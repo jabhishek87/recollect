@@ -12,6 +12,11 @@ run:               ## run app on host machine,
 	uvicorn ${APP_DIR}.main:app --reload --host ${HOST} --port ${PORT}
 # uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
 
+setup_app:          ## Install dependency
+	pip install -r requirements.txt
+	pip install -r req-dev.txt
+
+
 test:              ## run all tests
 test: flake8 pytest pytest-cov
 
