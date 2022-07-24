@@ -27,4 +27,4 @@ flake8:            ## run flake8
 	flake8
 
 pytest-cov:        ## run pytest
-	pytest --cov=$(APP_DIR) tests/
+	pytest --cov=$(APP_DIR) tests/ --cov-report xml:coverage.xml --cov-report=html
