@@ -1,35 +1,21 @@
-from datetime import datetime
-
-from beanie import Document
+import peewee as pw
 
 
-class Category(Document):
-    name: str
-    description: str
-    rdate: datetime = datetime.now()
+def get_db():
+    db = pw.SqliteDatabase('my_app.db')
+    return db
 
-    class Settings:
-        name = "category"
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "name": "Name",
-                "description": "Description",
-                "rdate": datetime.now()
-            }
-        }
+class CategoryModel(pw.Model):
+    id = pw.AutoField()
+    name = pw.CharField(unique=True)
+    description = pw.TextField()
 
-# class UpdateCategory(BaseModel):
-#     name: Optional[str]
-#     description: Optional[str]
-#     date: Optional[datetime]
+    class Meta:
+        database = get_db()
 
-#     class Config:
-#         schema_extra = {
-#             "example": {
-#                 "name": "Name",
-#                 "description": "Description",
-#                 "rdate": datetime.now()
-#             }
-#         }
+
+DB = get_db()
+DB.create_tables((
+    CategoryModel,
+))
