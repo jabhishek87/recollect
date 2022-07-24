@@ -17,8 +17,8 @@ setup_app:          ## Install dependency
 	pip install -r req-dev.txt
 
 
-test:              ## run all tests
-test: flake8 pytest pytest-cov
+tests:              ## run all tests
+tests: flake8 pytest pytest-cov
 
 pytest:            ## run pytest
 	pytest
